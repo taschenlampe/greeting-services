@@ -1,41 +1,41 @@
 pipeline{
-    agent{
-        label "nodejs"
-    }
-    stages{
-        stage("Install dependencies"){
-            steps{
-                sh "npm ci"
-            }
-        }
+	agent{
+		label "nodejs"
+	}
+	stages{
+		stage("Install dependencies"){
+			steps{
+				sh "npm ci"
+			}
+		}
 
-        stage("Check Style"){
-            steps{
-                sh "npm run lint"
-            }
-        }
+		stage("Check Style"){
+			steps{
+				echo sh "npm run lint"
+			}
+		}
 
-        stage("Test"){
-            steps{
-                sh "npm test"
-            }
-        }
+		stage("Test"){
+			steps{
+				sh "npm test"
+			}
+		}
 
-        // Add the "Deploy" stage here
-stage('Deploy') {
+		// Add the "Deploy" stage here
+		stage('Deploy') {
 
-steps {
+			steps {
 
-sh '''
+				sh '''
 
-oc project phsdcx-greetings
+					oc project phsdcx-greetings
 
-oc start-build greeting-services --follow --wait
+					oc start-build greeting-services --follow --wait
 
-'''
+					'''
 
-}
+			}
 
-}
-    }
+		}
+	}
 }
