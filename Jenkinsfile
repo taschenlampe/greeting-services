@@ -22,5 +22,20 @@ pipeline{
         }
 
         // Add the "Deploy" stage here
+stage('Deploy') {
+
+steps {
+
+sh '''
+
+oc project phsdcx-greetings
+
+oc start-build greeting-services --follow --wait
+
+'''
+
+}
+
+}
     }
 }
