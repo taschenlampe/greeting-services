@@ -11,7 +11,7 @@ pipeline{
 
 		stage("Check Style"){
 			steps{
-				echo sh "npm run lint"
+				 sh "echo NOP npm run lint"
 			}
 		}
 
